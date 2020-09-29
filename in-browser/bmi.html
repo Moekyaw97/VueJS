@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<title>Bmi Calculator</title>
+  		<script type="text/javascript" src="vue.min.js"></script>
+  		<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+  		<link rel="stylesheet" type="text/css" href="style.css">
+
+
+</head>
+<body>
+	<div id="app">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-12 text-center mt-5">
+                <h5>Height :<input v-model="feet" id="feet"> ft     
+                <input v-model="inches" class="ml-3" id="inches"> in</h5>
+           </div>
+
+            <div class=" col-md-12 text-center mt-3">   
+                <h5>Weight :<input v-model="weight" id="weight">lbs</h5>
+                  
+        	</div>
+
+        	<div class="row col-md-12 text-center mt-5"> 
+        		<div class="col-md-6">
+        		<ul id="list">
+        			
+        			<li class="under"> <span>Underweight = < 18.5</span></li><br>
+        			<li class="normal"> <span>Normal weight = 18.5-24.9</span></li><br>
+        			<li class="over"> <span>Overweight = 25-29.9</span></li><br>
+        			<li class="ob"> <span>Obesity = BMI of 30 or greater</span></li><br>
+        		</ul>
+        	    </div>
+
+
+        	<div class="col-md-0">
+        	<h3>Your BMI is : {{bmiCalculation}}
+				<!-- <div v-if="bmi < 18.5"> 
+					<p style="color: #00f">{{bmiCalculation}}</p>
+				</div>
+				<div v-else-if=" bmi >=18.5 && bmi <24.9 " >
+					<p style="color: #0f0">{{bmiCalculation}}</p>
+				</div>
+				<div v-else-if="bmi >=25 && bmi <29.9" >
+					<p style="color: #FFA500">{{bmiCalculation}}</p>
+				</div>
+				<div v-else-if>
+					<p style="color: #f00">{{bmiCalculation}}</p>
+				</div> -->
+				</h3>
+        	</div>
+        </div>
+
+       
+
+    </div>
+</div>
+	
+
+	<script type="text/javascript">
+		
+		new Vue({
+  el: '#app',
+  data: {
+   
+				feet: null,
+				inches: null,
+				weight: null
+
+  },
+  computed: {
+    bmiCalculation: function() {
+      var feet = parseInt(this.feet);
+      var inches = parseInt(this.inches);
+      var weight = parseInt(this.weight);
+      var height = (parseInt(this.feet) * 12) + parseInt(this.inches);
+      var squareHeight = height * height;
+      var bmi = (weight/squareHeight) * 703;
+      
+      if(bmi < 18.5) {
+      			return  bmi.toFixed(2);
+      		}
+      		else if (bmi >=18.5 && bmi <24.9 ) {
+      			return bmi.toFixed(2);
+      		}
+      		else if (bmi >=25 && bmi <29.9) {
+      			return bmi.toFixed(2);
+      		}
+      		else if(bmi >=30)
+      		{
+      			return bmi.toFixed(2);
+      		}
+    }
+  }
+})
+		
+	</script>
+
+</body>
+</html>
